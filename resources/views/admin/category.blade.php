@@ -79,11 +79,18 @@
 
                     <tr>
                         <th class=>Category Name</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
 
                     @foreach ($datas as $data)
                         <tr>
                             <td>{{ $data->category_name }}</td>
+
+                            <td><a href="{{ url('edit_category', $data->id) }}" class="btn btn-primary">Edit</td>
+
+                           <td><a href="{{ url('delete_category', $data->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</td>
+
                         </tr>
                     @endforeach
 
@@ -93,6 +100,34 @@
         </div>
     </div>
     <!-- JavaScript files-->
+
+    <script>
+
+        function confurmation() {
+
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Poof! Your imaginary file has been deleted!", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("Your imaginary file is safe!");
+                    }
+                });
+
+        }
+
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js">
+
     <script src="{{ asset('adminCSS/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('adminCSS/vendor/popper.js/umd/popper.min.js') }}"></script>
     <script src="{{ asset('adminCSS/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
