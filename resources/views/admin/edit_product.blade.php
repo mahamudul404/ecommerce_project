@@ -19,52 +19,61 @@
             <div class="container-fluid">
 
                 <div class="text-center ">
-                    <h1 >Edit Product</h1>
+                    <h1>Edit Product</h1>
                 </div>
 
                 <div class="">
 
-                    <form class="mt-4" action="{{ url('update_product', $data->id) }}" method="POST" enctype="multipart/form-data">
-                      @csrf
-                      @method('PUT')
+                    <form class="mt-4" action="{{ url('update_product', $data->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
 
-                      <div class="mb-3">
-                        <label for=""> Product Title</label>
-                        <input class="form-control" type="text" name="title" value="{{ $data->title }}">
-                      </div>
+                        <div class="mb-3">
+                            <label for=""> Product Title</label>
+                            <input class="form-control" type="text" name="title" value="{{ $data->title }}">
+                        </div>
 
-                      <div class="mb-3">
-                        <label for=""> Product Description</label>
-                        <input class="form-control" type="text" name="description" value="{{ $data->description }}">
-                      </div>
+                        <div class="mb-3">
+                            <label for=""> Product Description</label>
+                            <input class="form-control" type="text" name="description"
+                                value="{{ $data->description }}">
+                        </div>
 
-                      <div class="mb-3">
-                        <label for=""> Product Price</label>
-                        <input class="form-control" type="number" name="price" value="{{ $data->price }}" required>
-                      </div>
+                        <div class="mb-3">
+                            <label for=""> Product Price</label>
+                            <input class="form-control" type="number" name="price" value="{{ $data->price }}"
+                                required>
+                        </div>
 
-                      <div class="mb-3">
-                        <label for=""> Product Quantity</label>
-                        <input class="form-control" type="number" name="quantity" value="{{ $data->quantity }}" required>
-                      </div>
+                        <div class="mb-3">
+                            <label for=""> Product Quantity</label>
+                            <input class="form-control" type="number" name="quantity" value="{{ $data->quantity }}"
+                                required>
+                        </div>
 
-                      <div class="mb-3">
-                        <label for=""> Product Category</label>
-                        <select class="form-control" name="category" id="">
-                            <option value=" {{$data->category}} ">{{$data->category}}</option>
-                            
-                        </select>
-                      </div>
+                        <div class="mb-3">
+                            <label for=""> Product Category</label>
+                            <select class="form-control" name="category" id="">
+                                <option value=" {{ $data->category }} ">{{ $data->category }}</option>
 
-                      <div class="mt-3">
-                        <label for=""> Product Image</label>
-                        <img class="img-thumbnail" width="140" src="/product/{{ $data->image }}" alt="">
-                      </div>
+                            </select>
+                        </div>
 
-                      <div class="text-center m-4">
-                        <input class="btn btn-success" type="submit" value="Update">
-                      </div>
-                      
+                        <div class="mt-3">
+                            <label for=""> Current Image</label>
+                            <img class="img-thumbnail" width="140" src="/product/{{ $data->image }}" alt="">
+                        </div>
+
+                        <div>
+                            <label for=""> New Image</label>
+                            <input class="form-control" type="file" name="image">
+                        </div>
+
+                        <div class="text-center m-4">
+                            <input class="btn btn-success" type="submit" value="Update">
+                        </div>
+
 
 
                     </form>
