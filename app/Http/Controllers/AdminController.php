@@ -108,4 +108,22 @@ class AdminController extends Controller
         toastr()->closeButton()->success('Product deleted successfully');
         return redirect()->back();
     }
+
+    public function edit_product($id){
+
+        $data = Product::find($id);
+
+        return view('admin.edit_product', compact('data'));
+    }
+
+    // public function update_product(Request $request, $id)
+    // {
+
+    //     $data = Product::find($id);
+    //     $data->title = $request->input('title');
+    //     $data->description = $request->input('description');
+    //     $data->category = $request->input('category');
+    //     $data->price = $request->input('price');
+    //     $data->quantity = $request->input('quantity');
+    // }
 }

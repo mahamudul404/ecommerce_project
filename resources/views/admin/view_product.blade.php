@@ -62,6 +62,7 @@
                             <th>Price</th>
                             <th>Category</th>
                             <th>Quantity</th>
+                            <th>Edit</th>
                             <th>Delete</th>
                         </tr>
 
@@ -73,6 +74,10 @@
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->category }}</td>
                                 <td>{{ $product->quantity }}</td>
+
+                                <td>
+                                    <a class="btn btn-primary" href="{{ url('edit_product', $product->id)}}">Edit</a>
+                                </td>
 
                                 <td>
                                   <a class="btn btn-danger" href="{{ url('delete_product', $product->id)}}" onclick="return confirm('Are you sure?')">Delete</a>
