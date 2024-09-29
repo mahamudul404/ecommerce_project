@@ -28,6 +28,9 @@
                                   </span>
                                 </h6>
                             </div>
+                            <div style="padding: 10px">
+                              <a class="btn btn-danger" href=" {{url('product_details', $product->id)}} ">Details</a>
+                            </div>
                     </div>
                 </div>
             @endforeach
