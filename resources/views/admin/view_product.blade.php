@@ -19,7 +19,7 @@
         }
 
         th {
-            backgournd-color: skyblue;
+            background-color: skyblue;
             color: white;
             font-size: 19px;
             font-weight: bold;
@@ -62,16 +62,23 @@
                             <th>Price</th>
                             <th>Category</th>
                             <th>Quantity</th>
+                            <th>Delete</th>
                         </tr>
 
                         @foreach ($products as $product)
                             <tr>
                                 <td>{{ $product->title }}</td>
-                                <td>{{ $product->description }}</td>
+                                <td>{!!Str::limit($product->description, 50)!!}</td>
                                 <td><img src="product/{{ $product->image }}" alt=""></td>
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->category }}</td>
                                 <td>{{ $product->quantity }}</td>
+
+                                <td>
+                                  <a class="btn btn-danger" href="{{ url('delete_product', $product->id)}}" onclick="return confirm('Are you sure?')">Delete</a>
+                                </td>
+                
+
                             </tr>
                         @endforeach
 
