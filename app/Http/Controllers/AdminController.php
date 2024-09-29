@@ -37,10 +37,13 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function edit_category($id)
+    public function edit_category ($id )
     {
-        $data = Category::find($id);
-        return view('admin.edit', compact('data'));
+        $data = Product::find($id);
+
+        // $category = Category::all();
+
+        return view('admin.edit', compact('data', 'category'));
     }
 
     public function update_category(Request $request, $id)
@@ -112,10 +115,9 @@ class AdminController extends Controller
     public function edit_product($id){
 
         $data = Product::find($id);
+        $category = Category::all();
 
-        // $data = Category::find($id);
-
-        return view('admin.edit_product', compact('data'));
+        return view('admin.edit_product', compact('data', 'category'));
     }
 
     public function update_product(Request $request, $id)
@@ -140,5 +142,14 @@ class AdminController extends Controller
 
         toastr()->closeButton()->success('Product updated successfully');
         return redirect()->route('view_product');
+    }
+
+    public function search_product(Request $request)
+    {
+        $search = $request->search;
+        if ($search) {
+            $products = Product::where('title', 'Like', '%' . $search . '%')->orWhere('quantity', 'Like', '%' . $search . '%')->simplePaginate(3);
+            return view('admin.view_product', compact('products'));
+        }
     }
 }

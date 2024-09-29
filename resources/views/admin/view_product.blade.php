@@ -51,6 +51,13 @@
         <div class="page-header">
             <div class="container-fluid">
 
+                <div class=" text-right">
+                    <form class="search-form" action="{{ url('search_product') }}" method="GET">
+                        <input class="" type="search" name="search" placeholder="Search">
+                        <button class="" type="submit">Search</button>
+                    </form>
+                </div>
+
 
 
                 <div class="div_deg">
@@ -69,20 +76,21 @@
                         @foreach ($products as $product)
                             <tr>
                                 <td>{{ $product->title }}</td>
-                                <td>{!!Str::limit($product->description, 50)!!}</td>
+                                <td>{!! Str::limit($product->description, 50) !!}</td>
                                 <td><img src="product/{{ $product->image }}" alt=""></td>
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->category }}</td>
                                 <td>{{ $product->quantity }}</td>
 
                                 <td>
-                                    <a class="btn btn-primary" href="{{ url('edit_product', $product->id)}}">Edit</a>
+                                    <a class="btn btn-primary" href="{{ url('edit_product', $product->id) }}">Edit</a>
                                 </td>
 
                                 <td>
-                                  <a class="btn btn-danger" href="{{ url('delete_product', $product->id)}}" onclick="return confirm('Are you sure?')">Delete</a>
+                                    <a class="btn btn-danger" href="{{ url('delete_product', $product->id) }}"
+                                        onclick="return confirm('Are you sure?')">Delete</a>
                                 </td>
-                
+
 
                             </tr>
                         @endforeach

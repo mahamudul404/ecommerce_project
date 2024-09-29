@@ -57,6 +57,12 @@
                             <select class="form-control" name="category" id="">
                                 <option value=" {{ $data->category }} ">{{ $data->category }}</option>
 
+                                @foreach ($category as $category)
+
+                                    <option value="{{ $category->category_name }}">{{ $category->category_name }}</option>
+                                  
+                                @endforeach
+
                             </select>
                         </div>
 
