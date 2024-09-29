@@ -47,3 +47,5 @@ Route::put('/update_product/{id}', [AdminController::class, 'update_product'])->
 Route::get('search_product', [AdminController::class, 'search_product'])->middleware('auth','admin')->name('search_product');
 
 Route::get('product_details/{id}', [HomeController::class, 'product_details']);
+
+Route::get('add_to_cart/{id}', [HomeController::class, 'add_to_cart']);
