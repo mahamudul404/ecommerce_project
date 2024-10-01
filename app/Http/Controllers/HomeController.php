@@ -34,7 +34,15 @@ class HomeController extends Controller
 
 
         $products = Product::all();
-        return view('home.index', compact('products'));
+
+        if (Auth::check()) {
+            $count = Cart::where('user_id', Auth::user()->id)->count();
+        } else {
+            $count = '';
+        }
+
+
+        return view('home.index', compact('products', 'count'));
     }
 
     public function product_details($id)
@@ -42,10 +50,16 @@ class HomeController extends Controller
 
         $product = Product::find($id);
 
+        if (Auth::check()) {
+            $count = Cart::where('user_id', Auth::user()->id)->count();
+        } else {
+            $count = '';
+        }
 
 
 
-        return view('home.product_details', compact('product'));
+
+        return view('home.product_details', compact('product', 'count'));
     }
 
     public function add_to_cart($id)
@@ -73,7 +87,7 @@ class HomeController extends Controller
 
         if (Auth::check()) {
             $count = Cart::where('user_id', Auth::user()->id)->count();
-        }else{
+        } else {
             $count = '';
         }
 
@@ -81,5 +95,14 @@ class HomeController extends Controller
 
 
         return view('home.my_cart', compact('count', 'carts'));
+    }
+
+    public function remove_cart($id){
+        $cart = Cart::find($id);
+        $cart->delete();
+
+        toastr()->closeButton()->success('Product removed from cart successfully!');
+
+        return redirect()->back();
     }
 }
