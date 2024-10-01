@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProfileController;
+use App\Models\Cart;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Http\Request;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
@@ -48,4 +51,6 @@ Route::get('search_product', [AdminController::class, 'search_product'])->middle
 
 Route::get('product_details/{id}', [HomeController::class, 'product_details']);
 
-Route::get('add_to_cart/{id}', [HomeController::class, 'add_to_cart']);
+Route::get('add_to_cart/{id}', [HomeController::class, 'add_to_cart'])->middleware('auth','verified');
+
+Route::get('my_cart', [HomeController::class, 'my_cart'])->middleware('auth','verified');

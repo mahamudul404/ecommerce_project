@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -19,11 +18,20 @@ class HomeController extends Controller
     {
 
         $products = Product::all();
-        return view('home.index', compact('products'));
+
+
+        if (Auth::check()) {
+            $count = Cart::where('user_id', Auth::user()->id)->count();
+        } else {
+            $count = 0;
+        }
+
+        return view('home.index', compact('products', 'count'));
     }
 
     public function login_home()
     {
+
 
         $products = Product::all();
         return view('home.index', compact('products'));
@@ -33,6 +41,9 @@ class HomeController extends Controller
     {
 
         $product = Product::find($id);
+
+
+
 
         return view('home.product_details', compact('product'));
     }
@@ -49,8 +60,26 @@ class HomeController extends Controller
         $carts->save();
 
 
+        toastr()->closeButton()->success('Product added to cart successfully!');
+
+
 
 
         return redirect()->back();
+    }
+
+    public function my_cart()
+    {
+
+        if (Auth::check()) {
+            $count = Cart::where('user_id', Auth::user()->id)->count();
+        }else{
+            $count = '';
+        }
+
+        $carts = Cart::where('user_id', Auth::user()->id)->get();
+
+
+        return view('home.my_cart', compact('count', 'carts'));
     }
 }
