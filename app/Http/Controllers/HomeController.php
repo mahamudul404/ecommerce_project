@@ -144,11 +144,14 @@ class HomeController extends Controller
 
         if(Auth::check()){
 
-            $count = Order::where('user_id', Auth::user()->id)->count();
+            $count = Cart::where('user_id', Auth::user()->id)->count();
+            
         }else{
             $count = '';
         }
 
-        return view('home.my_order', compact('count'));
+        $orders = Order::where('user_id', Auth::user()->id)->get();
+
+        return view('home.my_order', compact('count', 'orders'));
     }
 }
