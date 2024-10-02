@@ -139,4 +139,16 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+
+    public function my_order(){
+
+        if(Auth::check()){
+
+            $count = Order::where('user_id', Auth::user()->id)->count();
+        }else{
+            $count = '';
+        }
+
+        return view('home.my_order', compact('count'));
+    }
 }
