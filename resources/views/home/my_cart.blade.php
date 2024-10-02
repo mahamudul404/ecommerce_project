@@ -19,8 +19,8 @@
     </div>
 
     <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
                 <table class=" table table-striped table-bordered table-hover table-sm text-center">
                     <thead class="">
                         <thead class="">
@@ -32,6 +32,10 @@
                             </tr>
                         </thead>
 
+                        @php
+                            $total = 0;
+                        @endphp
+
                         @foreach ($carts as $cart)
                             <tr class="text-center">
                                 <td class="text-center">{{ $cart->product->title }}</td>
@@ -42,9 +46,15 @@
                                     <a href=" {{ url('remove_cart/' . $cart->id) }} " class="btn btn-danger">Remove</a>
                                 </td>
                             </tr>
+                            @php
+                                $total += $cart->product->price;
+                            @endphp
                         @endforeach
                 </table>
 
+            </div>
+            <div class="col-md-4 offset-md-2 mt-3 ">
+                <h4>Total Price : ${{ $total }}</h4>
             </div>
         </div>
     </div>
