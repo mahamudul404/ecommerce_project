@@ -19,8 +19,35 @@
     </div>
 
     <div class="container mt-4">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="row justify-content-center justify-content-center m-4">
+
+            <div class="col-md-4 mr-4">
+                <form action="">
+
+                    <div class="form-group">
+                        <label for="name">Receiver Name</label>
+                        <input type="text" class="form-control" name="name" value="{{ Auth::user()->name}}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Receiver Address</label>
+                        <textarea name="address" id="" cols="30" rows="10" class="form-control">{{Auth::user()->address}}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Receiver Phone</label>
+                        <input type="text" class="form-control" name="phone" value="{{ Auth::user()->phone}}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Order Now</button>
+                    </div>
+
+
+                </form>
+            </div>
+
+            <div class="">
                 <table class=" table table-striped table-bordered table-hover table-sm text-center">
                     <thead class="">
                         <thead class="">
@@ -51,11 +78,26 @@
                             @endphp
                         @endforeach
                 </table>
+            </div>
 
-            </div>
-            <div class="col-md-4 offset-md-2 mt-3 ">
-                <h4>Total Price : ${{ $total }}</h4>
-            </div>
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="col-md-4 offset-md-5 mt-3 ">
+            <h4>Total Price : ${{ $total }}</h4>
         </div>
     </div>
 
