@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -105,44 +107,33 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+
+    public function confirm_order(Request $request)
+    {
+
+        $user_id = Auth::user()->id;
+        $name = $request->name;
+        $phone = $request->phone;
+        $address = $request->address;
+        $carts = Cart::where('user_id', $user_id)->get();
+
+       foreach($carts as $cart){
+        $order = new Order();
+        $order->name = $name;
+        $order->phone = $phone;
+        $order->rec_address = $address;
+        $order->user_id = $user_id;
+        $order->product_id = $cart->product_id;
+        $order->save();
+
+        toastr()->closeButton()->success('Order placed successfully!');
+
+        return redirect()->back();
+       }
+        
+        
+    }
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                

@@ -22,21 +22,24 @@
         <div class="row justify-content-center justify-content-center m-4">
 
             <div class="col-md-4 mr-4">
-                <form action="">
+                <form action=" {{ url('confirm_order') }} " method="POST">
+                    @csrf
 
                     <div class="form-group">
                         <label for="name">Receiver Name</label>
-                        <input type="text" class="form-control" name="name" value="{{ Auth::user()->name}}" required>
+                        <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}"
+                            required>
                     </div>
 
                     <div class="form-group">
                         <label for="">Receiver Address</label>
-                        <textarea name="address" id="" cols="30" rows="10" class="form-control">{{Auth::user()->address}}</textarea>
+                        <textarea name="address" id="" cols="30" rows="10" class="form-control">{{ Auth::user()->address }}</textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="">Receiver Phone</label>
-                        <input type="text" class="form-control" name="phone" value="{{ Auth::user()->phone}}" required>
+                        <input type="text" class="form-control" name="phone" value="{{ Auth::user()->phone }}"
+                            required>
                     </div>
 
                     <div class="form-group">
