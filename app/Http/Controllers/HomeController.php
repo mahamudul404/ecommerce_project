@@ -99,7 +99,8 @@ class HomeController extends Controller
         return view('home.my_cart', compact('count', 'carts'));
     }
 
-    public function remove_cart($id){
+    public function remove_cart($id)
+    {
         $cart = Cart::find($id);
         $cart->delete();
 
@@ -117,23 +118,25 @@ class HomeController extends Controller
         $address = $request->address;
         $carts = Cart::where('user_id', $user_id)->get();
 
-       foreach($carts as $cart){
-        $order = new Order();
-        $order->name = $name;
-        $order->phone = $phone;
-        $order->rec_address = $address;
-        $order->user_id = $user_id;
-        $order->product_id = $cart->product_id;
-        $order->save();
+        foreach ($carts as $cart) {
+            $order = new Order();
+            $order->name = $name;
+            $order->phone = $phone;
+            $order->rec_address = $address;
+            $order->user_id = $user_id;
+            $order->product_id = $cart->product_id;
+            $order->save();
+        }
+
+        $remove_cart = Cart::where('user_id', $user_id)->get();
+        foreach ($remove_cart as $cart) {
+            $data = Cart::find($cart->id);
+            $data->delete();
+        }
+
 
         toastr()->closeButton()->success('Order placed successfully!');
 
         return redirect()->back();
-       }
-        
-        
     }
 }
-
-
-
