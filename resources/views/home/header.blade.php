@@ -39,15 +39,15 @@
                 @if (Route::has('login'))
                     @auth
 
-                    <a href=" {{ url('my_order') }} ">
-                        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                        My Order
-                    </a>
+                        <a href=" {{ url('my_order') }} ">
+                            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                            My Order
+                        </a>
 
                         <a href=" {{ url('my_cart') }} ">
                             <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                           [{{$count}}]
-                           
+                            [{{ $count }}]
+
                         </a>
 
 

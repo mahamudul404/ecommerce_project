@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Order Now</button>
+                        <button type="submit" class="btn btn-primary">Cash on Delivery</button>
                     </div>
 
 
