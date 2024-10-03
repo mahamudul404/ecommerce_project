@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StripePaymentController;
 use Illuminate\Http\Request;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -48,6 +49,16 @@ Route::get('edit_product/{id}', [AdminController::class, 'edit_product'])->middl
 Route::put('/update_product/{id}', [AdminController::class, 'update_product'])->middleware('auth','admin');
 
 Route::get('search_product', [AdminController::class, 'search_product'])->middleware('auth','admin')->name('search_product');
+
+
+Route::controller(StripePaymentController::class)->group(function () {
+
+    Route::get('stripe/{total}', 'stripe');
+
+    Route::post('stripe/{total}', 'stripePost')->name('stripe.post');
+});
+
+
 
 Route::get('product_details/{id}', [HomeController::class, 'product_details']);
 

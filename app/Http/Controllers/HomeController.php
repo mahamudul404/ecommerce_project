@@ -154,4 +154,5 @@ class HomeController extends Controller
 
         return view('home.my_order', compact('count', 'orders'));
     }
+
 }
