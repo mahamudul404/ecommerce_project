@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -13,7 +14,12 @@ class HomeController extends Controller
     public function index()
     {
 
-        return view('admin.index');
+        $users = User::where('usertype', 'user')->get()->count();
+        $products = Product::all()->count();
+        $orders = Order::all()->count();
+        $delevered = Order::where('status', 'Delevered')->count();
+
+        return view('admin.index', compact('users', 'products', 'orders', 'delevered'));
     }
 
     public function home()
