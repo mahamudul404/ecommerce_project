@@ -83,7 +83,7 @@
                                 <td>{{ $product->quantity }}</td>
 
                                 <td>
-                                    <a class="btn btn-primary" href="{{ url('edit_product', $product->id) }}">Edit</a>
+                                    <a class="btn btn-primary" href="{{ url('edit_product', $product->slug) }}">Edit</a>
                                 </td>
 
                                 <td>

@@ -93,8 +93,10 @@ class AdminController extends Controller
 
     public function view_product(){
 
+
+
         $products = Product::simplePaginate(3);
-        return view('admin.view_product', compact('products'));
+        return view('admin.view_product', compact('products',));
     }
 
     public function delete_product($id)
@@ -112,9 +114,9 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function edit_product($id){
+    public function edit_product($slug){
 
-        $data = Product::find($id);
+        $data = Product::where('slug', $slug)->get()->first();
         $category = Category::all();
 
         return view('admin.edit_product', compact('data', 'category'));
