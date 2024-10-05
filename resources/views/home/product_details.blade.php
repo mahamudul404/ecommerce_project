@@ -69,7 +69,10 @@
                             </div>
 
 
-
+                            <div>
+                                <a class="btn btn-primary" href=" {{ url('add_to_cart', $product->id) }} ">Add to
+                                    cart</a>
+                            </div>
 
                         </div>
                     </div>

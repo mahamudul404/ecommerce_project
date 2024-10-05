@@ -79,3 +79,11 @@ Route::get('update_status/{id}', [AdminController::class, 'update_status'])->mid
 Route::get('delevered/{id}', [AdminController::class, 'deleverd'])->middleware('auth','admin');
 
 Route::get('print_pdf/{id}', [AdminController::class, 'print_pdf'])->middleware('auth','admin');
+
+Route::get('shop', [HomeController::class, 'shop']);
+
+Route::get('why', [HomeController::class, 'why']);
+
+Route::get('testimonial', [HomeController::class, 'testimonial']);
+
+Route::get('contact', [HomeController::class, 'contact']);
