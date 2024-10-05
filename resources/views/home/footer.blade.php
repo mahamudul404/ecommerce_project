@@ -1,14 +1,14 @@
  <section class="info_section  layout_padding2-top">
     <div class="social_container">
       <div class="social_box">
-        <a href="">
+        <a href=" https://web.facebook.com/mahamudul404/ " target="_blank">
           <i class="fa fa-facebook" aria-hidden="true"></i>
         </a>
-        <a href="">
-          <i class="fa fa-twitter" aria-hidden="true"></i>
+        <a href="https://github.com/mahamudul404/" target="_blank">
+          <i class="fa fa-github" aria-hidden="true"></i>
         </a>
-        <a href="">
-          <i class="fa fa-instagram" aria-hidden="true"></i>
+        <a href="https://linkedin.com/mahamudul404/" target="_blank">
+          <i class="fa fa-linkedin" aria-hidden="true"></i>
         </a>
         <a href="">
           <i class="fa fa-youtube" aria-hidden="true"></i>
@@ -74,7 +74,7 @@
       <div class="container">
         <p>
           &copy; <span id="displayYear"></span> All Rights Reserved By
-          <a href="https://html.design/">Web Tech Knowledge</a>
+          <a href="https://html.design/">Mahamudul Hasan</a>
         </p>
       </div>
     </footer>
