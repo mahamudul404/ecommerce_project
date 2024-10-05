@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Container\Attributes\CurrentUser;
+use PhpParser\Node\Expr\FuncCall;
 
 class AdminController extends Controller
 {
@@ -153,5 +155,30 @@ class AdminController extends Controller
             $products = Product::where('title', 'Like', '%' . $search . '%')->orWhere('quantity', 'Like', '%' . $search . '%')->simplePaginate(3);
             return view('admin.view_product', compact('products'));
         }
+    }
+
+    public function view_order()
+    {
+        $orders = Order::all();
+        return view('admin.view_order', compact('orders'));
+    }
+
+    public function update_status($id)
+    {
+        $order = Order::find($id);
+        $order->status = "On the way";
+        $order->update();
+        toastr()->closeButton()->success('Order status updated successfully');
+        return redirect('/view_order');
+    }
+
+    public function deleverd($id){
+
+        $order = Order::find($id);
+        $order->status = "Delevered";
+        $order->update();
+
+        toastr()->closeButton()->success('Order status updated successfully');
+        return redirect('/view_order');
     }
 }
