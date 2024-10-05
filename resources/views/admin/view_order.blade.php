@@ -37,7 +37,24 @@
             <tr>
               <td> {{ $order->product->title }} </td>
               <td> {{ $order->product->price }} </td>
-              <td> {{ $order->status }} </td>
+              <td>
+
+                @if ($order->status == 'pending')
+
+                <span style="color: red" >{{ $order->status }}</span>
+
+                @elseif ($order->status == 'On the way')
+
+                <span style="color: skyblue">{{ $order->status }}</span>
+
+                @elseif ($order->status == 'Delevered')
+
+                <span style="color: orange">{{ $order->status }}</span>
+
+                @endif
+
+
+              </td>
               <td> <img class="img-fluid" src="/product/{{ $order->product->image }}" width="100" height="100"> </td>
               <td> <a href=" {{ url('update_status', $order->id) }} " class="btn btn-primary">On the way</a></td>
               <td> <a href=" {{ url('delevered', $order->id) }} " class="btn btn-success">Delivered</a></td>
