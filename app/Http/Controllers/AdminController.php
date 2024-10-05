@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Container\Attributes\CurrentUser;
 use PhpParser\Node\Expr\FuncCall;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminController extends Controller
 {
@@ -39,7 +40,7 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function edit_category ($id )
+    public function edit_category($id)
     {
         $data = Product::find($id);
 
@@ -67,7 +68,8 @@ class AdminController extends Controller
         return view('admin.add_product', compact('category'));
     }
 
-    public function upload_product(Request $request){
+    public function upload_product(Request $request)
+    {
 
         $product = new Product();
 
@@ -76,14 +78,14 @@ class AdminController extends Controller
         $product->category = $request->input('category');
         $product->price = $request->input('price');
         $product->quantity = $request->input('quantity');
-        
+
         $image = $request->file('image');
 
-        $imagename = time().'.'.$image->getClientOriginalExtension();
+        $imagename = time() . '.' . $image->getClientOriginalExtension();
         $request->image->move(public_path('product'), $imagename);
         $product->image = $imagename;
 
-       
+
 
 
         $product->save();
@@ -93,7 +95,8 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function view_product(){
+    public function view_product()
+    {
 
 
 
@@ -105,7 +108,7 @@ class AdminController extends Controller
     {
         $data = Product::find($id);
 
-        $image_path = "product/".$data->image;
+        $image_path = "product/" . $data->image;
         if (file_exists($image_path)) {
             @unlink($image_path);
         }
@@ -116,7 +119,8 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function edit_product($slug){
+    public function edit_product($slug)
+    {
 
         $data = Product::where('slug', $slug)->get()->first();
         $category = Category::all();
@@ -136,8 +140,8 @@ class AdminController extends Controller
 
         $image = $request->file('image');
 
-        if($image){
-            $imagename = time().'.'.$image->getClientOriginalExtension();
+        if ($image) {
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
             $request->image->move(public_path('product'), $imagename);
             $data->image = $imagename;
         }
@@ -172,7 +176,8 @@ class AdminController extends Controller
         return redirect('/view_order');
     }
 
-    public function deleverd($id){
+    public function deleverd($id)
+    {
 
         $order = Order::find($id);
         $order->status = "Delevered";
@@ -180,5 +185,19 @@ class AdminController extends Controller
 
         toastr()->closeButton()->success('Order status updated successfully');
         return redirect('/view_order');
+    }
+
+    public function print_pdf($id)
+    {
+
+
+
+        $order = Order::find($id);
+
+        $pdf = Pdf::loadView('admin.invoice', compact('order'));
+
+
+
+        return $pdf->download('invoice.pdf');
     }
 }

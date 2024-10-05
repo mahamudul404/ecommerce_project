@@ -77,3 +77,5 @@ Route::get('view_order', [AdminController::class, 'view_order'])->middleware('au
 Route::get('update_status/{id}', [AdminController::class, 'update_status'])->middleware('auth','admin');
 
 Route::get('delevered/{id}', [AdminController::class, 'deleverd'])->middleware('auth','admin');
+
+Route::get('print_pdf/{id}', [AdminController::class, 'print_pdf'])->middleware('auth','admin');

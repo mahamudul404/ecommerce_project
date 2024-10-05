@@ -24,17 +24,19 @@
 
         <table class="table table-bordered">
 
-            <tr>
+            <tr class="text-center">
                 <th>Product Name</th>
                 <th>Product Price</th>
                 <th>Product Status</th>
                 <th>Product Image</th>
                 <th>Update Status</th>
+                <td>Print PDF</td>
+
 
             </tr>
 
             @foreach ($orders as $order)
-            <tr>
+            <tr class="text-center">
               <td> {{ $order->product->title }} </td>
               <td> {{ $order->product->price }} </td>
               <td>
@@ -56,8 +58,12 @@
 
               </td>
               <td> <img class="img-fluid" src="/product/{{ $order->product->image }}" width="100" height="100"> </td>
-              <td> <a href=" {{ url('update_status', $order->id) }} " class="btn btn-primary">On the way</a></td>
-              <td> <a href=" {{ url('delevered', $order->id) }} " class="btn btn-success">Delivered</a></td>
+              <td> <a href=" {{ url('update_status', $order->id) }} " class="btn btn-primary">On the way</a>
+              <a href=" {{ url('delevered', $order->id) }} " class="btn btn-success">Delivered</a></td>
+              </td>
+              
+
+              <td><a href=" {{ url('print_pdf', $order->id) }} " class="btn btn-danger">Print PDF</a></td>
             </tr>
 
             @endforeach
