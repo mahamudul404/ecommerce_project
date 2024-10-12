@@ -71,6 +71,15 @@ class AdminController extends Controller
     public function upload_product(Request $request)
     {
 
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'category' => 'required',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|integer|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         $product = new Product();
 
         $product->title = $request->input('title');
@@ -80,10 +89,14 @@ class AdminController extends Controller
         $product->quantity = $request->input('quantity');
 
         $image = $request->file('image');
-
-        $imagename = time() . '.' . $image->getClientOriginalExtension();
-        $request->image->move(public_path('product'), $imagename);
-        $product->image = $imagename;
+        if ($image) {
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $request->image->move(public_path('product'), $imagename);
+            $product->image = $imagename;
+        } else {
+            toastr()->closeButton()->error('Image is required');
+            return redirect()->back();
+        }
 
 
 
