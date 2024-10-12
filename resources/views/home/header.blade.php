@@ -12,25 +12,34 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  ">
-                <li class="nav-item active">
+                {{-- if admin is login then show dashboard link  --}}
+                @if (Auth::check() && Auth::user()->usertype == 'admin')
+                    <li class="nav-item mr-5">
+                        <a class="nav-link" href="{{ url('/admin/dashboard') }}">Dashboard <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                @endif
+                {{-- control active navbar link --}}
+
+                <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Request::is ('shop') ? 'active' : ''}}">
                     <a class="nav-link" href=" {{ url('shop') }} ">
                         Shop
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Request::is ('why') ? 'active' : ''}}">
                     <a class="nav-link" href="{{ url('why') }}">
                         Why Us
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Request::is ('testimonial') ? 'active' : ''}}">
                     <a class="nav-link" href="{{ url('testimonial') }}">
                         Testimonial
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Request::is ('contact') ? 'active' : ''}}">
                     <a class="nav-link" href="{{ url('contact') }}">Contact Us</a>
                 </li>
             </ul>

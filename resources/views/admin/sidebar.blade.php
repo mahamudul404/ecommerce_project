@@ -25,7 +25,7 @@
             </li>
              <li><a href="{{ url('view_order')}}"> <i class="icon-grid"></i>View Orders</a></li>
              {{-- see customer view page  --}}
-             <li><a href="{{ url('/')}}"> <i class="icon-grid"></i>View Customers</a></li>
+             <li><a href="{{ url('/dashboard')}}"> <i class="icon-grid"></i>View Customers page</a></li>
 
         </ul>
     </nav>
