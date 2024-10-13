@@ -73,8 +73,8 @@
     <footer class=" footer_section">
       <div class="container">
         <p>
-          &copy; <span id="displayYear"></span> All Rights Reserved By
-          <a href="https://html.design/">Mahamudul Hasan</a>
+          &copy; {{ date('Y') }} All rights reserved.
+          <a style="color: #d43232;" target="_blank" href="https://www.facebook.com/mahamudul404">Developed by @Mahamudul</a>
         </p>
       </div>
     </footer>
